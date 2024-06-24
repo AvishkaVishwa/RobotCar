@@ -16,7 +16,7 @@ Key Components:
      -Servo Motor with Plates: Mechanism to lift and secure boxes using two plates controlled by a single servo motor.
  -Power Supply:
      -Li-Po Battery: Provides power to the microcontroller, sensors, and actuators. 
--Communication:
+ -Communication:
      -WiFi: Used for communication between the ESP32-CAM and the ESP32 board for image processing.
  
      
