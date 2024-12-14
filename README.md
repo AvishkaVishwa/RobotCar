@@ -4,6 +4,11 @@ This project contains the code for a sumo robot built for a competition. The rob
 
 ## Hardware Setup
 
+<img src ="/assets/photo_2024-12-13_21-54-50.jpg">
+
+<img src ="/assets/photo_2024-12-13_21-54-52.jpg">
+
+
 https://github.com/user-attachments/assets/4bb56c18-8b56-4d90-b98e-7fa41129c853
 
 
