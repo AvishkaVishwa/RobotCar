@@ -1,82 +1,126 @@
-# Sumo Robot
+Thanks! Based on your upgrade from Arduino to **ESP32 with a custom PCB**, here’s a **revised and modernized `README.md`** for your updated **Sumo Robot project**, reflecting the current ESP32-based design, hardware improvements, and professional formatting:
 
-This project contains the code for a sumo robot built for a competition. The robot uses motor control, ultrasonic sensor, and IR sensor configurations to detect and push objects out of the ring while avoiding lines.
+---
 
-## Hardware Setup
+````markdown
+# 🔥 Sumo Robot – ESP32 Upgrade Version
 
-<img src ="/assets/photo_2024-12-13_21-54-50.jpg">
+This project is the upgraded version of the original Sumo Robot built for competition purposes. The robot now uses an **ESP32 DevKit (38-pin)** with custom PCB, enhanced motor driver support, and refined obstacle detection and edge avoidance capabilities using ultrasonic and IR sensors.
 
-<img src ="/assets/photo_2024-12-13_21-54-52.jpg">
+---
 
+## 🧠 Key Features
+- Dual-motor differential drive using **TB6612FNG motor drivers**
+- **IR sensors** for ring edge (white line) detection
+- **Ultrasonic sensors** for opponent detection
+- **PWM-based servo motor support**
+- Compact and modular **PCB designed in KiCAD**
+- Controlled by an **ESP32 DevKit**, programmed using **ESP-IDF**
 
-https://github.com/user-attachments/assets/4bb56c18-8b56-4d90-b98e-7fa41129c853
+---
 
+## 🔌 Hardware Setup
 
-### Motor Control Pins
-- STBY_PIN: 33
-- AIN1_PIN: 25
-- AIN2_PIN: 26
-- PWMA_PIN: 27
-- BIN1_PIN: 14
-- BIN2_PIN: 13
-- PWMB_PIN: 12
+### 🔲 ESP32 DevKit Pin Assignments (New PCB)
 
-### Ultrasonic Sensor Pins
-- TRIG_PIN: 18 (Trigger pin)
-- ECHO_PIN: 32 (Echo pin)
+| Component           | GPIO Pin | Description                |
+|---------------------|----------|----------------------------|
+| STBY (Shared)       | 15       | Motor driver enable (HIGH) |
+| Motor1 AIN1/AIN2    | 13 / 14  | Left motor direction       |
+| Motor1 BIN1/BIN2    | 12 / 27  | Left motor direction       |
+| Motor1 PWMA/PWMB    | 26 / 25  | Left motor speed (PWM)     |
+| Motor2 AIN1/AIN2    | 33 / 32  | Right motor direction      |
+| Motor2 BIN1/BIN2    | 19 / 18  | Right motor direction      |
+| Motor2 PWMA/PWMB    | 23 / 22  | Right motor speed (PWM)    |
+| IR Sensors (L/C/R)  | 34 / 35 / 39 | Edge detection (Input only) |
+| Ultrasonic 1        | TRIG: 5 / ECHO: 36 | Front sensor     |
+| Ultrasonic 2        | TRIG: 4 / ECHO: 21 | Side sensor       |
+| Servo 1 / Servo 2   | 2 / 17   | PWM output for actuators   |
 
-### Sensor Pins
-- Left IR Sensor: 35
-- Right IR Sensor: 34
+---
 
-### Constants
-- LINE_THRESHOLD: 500 (IR sensor threshold)
-- DISTANCE_THRESHOLD: 40 (Ultrasonic sensor threshold in cm)
-- PUSH_SPEED: 255 (Maximum speed for pushing)
-- SEARCH_SPEED: 200 (Speed while searching)
-- BACKUP_TIME: 700 (Time to back up when hitting line)
-- SPIRAL_INCREMENT: 200 (Duration increment for spiral search)
+## 🧩 PCB Design Overview
 
-## Software Setup
+- Designed using **KiCAD**
+- Contains LM2596-5.0 buck converter for **12V → 5V power supply**
+- Includes reverse polarity protection, indicator LEDs, decoupling caps
+- Labeled headers for **Motor drivers**, **Sensors**, and **Servos**
+- Optimized 2-layer layout with **ground plane** and **short traces**
 
-### Prerequisites
-- Arduino IDE
-- Arduino board compatible with the pin configurations
+---
 
-### Installation
-1. Clone the repository: `git clone https://github.com/AvishkaVishwa/Robot-Competetion-Sumo-Robot-method.git`
-2. Open the project in Arduino IDE.
-3. Upload the code to your Arduino board.
+## ⚙️ Software Stack
 
-### Code Explanation
+### 🛠 Development Environment
+- **ESP-IDF** (official framework)
+- FreeRTOS-based task scheduling
+- C code with modular structure for motors, sensors, and logic
 
-#### `setup()`
-- Initializes serial communication.
-- Sets motor control and sensor pins as outputs/inputs.
-- Enables the motor driver.
-- Initializes the timer for spiral search.
+### 🧪 Features in Code
+- **`motor_init()`**: Initializes motor driver GPIOs
+- **`pwm_init()`**: Configures PWM for motors and servos
+- **`measure_distance()`**: Ultrasonic distance measurement
+- **`app_main()`**: Core logic loop for movement, obstacle detection, edge avoidance
 
-#### `measureDistance()`
-- Measures the distance using the ultrasonic sensor.
+---
 
-#### `loop()`
-- Reads sensor values and performs actions based on conditions.
-- Implements line detection, box pushing, and spiral search logic.
+## 🚀 Getting Started
 
-#### Motor Control Functions
-- `BACKWARD(int Speed)`: Moves the robot backward.
-- `FORWARD(int Speed)`: Moves the robot forward.
-- `ROTATE(int Speed)`: Rotates the robot.
-- `Stop()`: Stops the robot.
+### ✅ Prerequisites
+- ESP-IDF setup on your machine
+- USB cable for ESP32 DevKit
+- Flashing tool: `idf.py`
 
-## Usage
-1. Place the robot in the competition ring.
-2. Turn on the robot.
-3. The robot will start by delaying for 5 seconds as per sumo rules.
-4. The robot will then search for objects using a spiral pattern and push detected objects while avoiding lines.
+### 🔧 Setup Steps
+1. Clone this repo:
+   ```bash
+   git clone https://github.com/AvishkaVishwa/Robot-Competetion-Sumo-Robot-method.git
+````
 
-## Contribution
-Feel free to fork the repository and submit pull requests for any improvements or bug fixes.
+2. Open the project in ESP-IDF.
+3. Build & flash:
 
-## License
-This project is licensed under the MIT License.# Sumo Robot
+   ```bash
+   idf.py build
+   idf.py -p /dev/ttyUSB0 flash
+   ```
+
+---
+
+## 🎮 Usage
+
+1. Power the robot via 12V supply.
+2. Upon boot, robot waits 5 seconds (per Sumo rules).
+3. Begins spiral search pattern using ultrasonic sensors.
+4. Pushes opponent when detected.
+5. Backs off and realigns if a white line is detected via IR sensors.
+
+---
+
+## 📸 Images
+
+> ![PCB Front View](/assets/photo_2024-12-13_21-54-50.jpg)
+> ![PCB Top View](/assets/photo_2024-12-13_21-54-52.jpg)
+
+---
+
+## 🤝 Contribution
+
+Feel free to fork this repository and submit pull requests for:
+
+* Performance optimizations
+* Additional sensor integration
+* AI-based strategy logic
+
+---
+
+## 📜 License
+
+This project is licensed under the MIT License. See the `LICENSE` file for details.
+
+```
+
+---
+
+Would you like me to push this updated `README.md` to your GitHub repo or help create an **assets folder** with updated schematic/3D model renders for showcasing the new PCB?
+```
