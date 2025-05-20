@@ -1,126 +1,133 @@
-Thanks! Based on your upgrade from Arduino to **ESP32 with a custom PCB**, here’s a **revised and modernized `README.md`** for your updated **Sumo Robot project**, reflecting the current ESP32-based design, hardware improvements, and professional formatting:
 
----
 
 ````markdown
-# 🔥 Sumo Robot – ESP32 Upgrade Version
+# 🤖 Sumo Robot – **ESP32 Upgrade Edition** 🚀
 
-This project is the upgraded version of the original Sumo Robot built for competition purposes. The robot now uses an **ESP32 DevKit (38-pin)** with custom PCB, enhanced motor driver support, and refined obstacle detection and edge avoidance capabilities using ultrasonic and IR sensors.
-
----
-
-## 🧠 Key Features
-- Dual-motor differential drive using **TB6612FNG motor drivers**
-- **IR sensors** for ring edge (white line) detection
-- **Ultrasonic sensors** for opponent detection
-- **PWM-based servo motor support**
-- Compact and modular **PCB designed in KiCAD**
-- Controlled by an **ESP32 DevKit**, programmed using **ESP-IDF**
+> ✅ A major redesign and performance upgrade of my original Arduino-based sumo robot project – now rebuilt with a powerful **ESP32 DevKit**, precision motor drivers, ultrasonic sensing, and a fully custom-designed PCB.
 
 ---
 
-## 🔌 Hardware Setup
+## 🛠 What's New in This Upgrade?
 
-### 🔲 ESP32 DevKit Pin Assignments (New PCB)
+| Original Setup (Arduino)              | 🚀 **Upgraded Setup (ESP32)**                        |
+|--------------------------------------|-----------------------------------------------------|
+| Arduino Uno                          | ESP32 DevKitC (38-pin) with WiFi, Dual Core         |
+| Breadboard + jumper wires            | Professionally designed 2-layer custom PCB          |
+| Single motor driver (L298N)          | Dual **TB6612FNG** drivers with PWM speed control   |
+| Basic IR and ultrasonic sensing      | Enhanced sensor layout with IR ×3, ultrasonic ×2    |
+| Arduino IDE                          | **ESP-IDF** with FreeRTOS and structured modules    |
+| Manual tuning                        | Modular C code with PID-ready motor control         |
 
-| Component           | GPIO Pin | Description                |
-|---------------------|----------|----------------------------|
-| STBY (Shared)       | 15       | Motor driver enable (HIGH) |
-| Motor1 AIN1/AIN2    | 13 / 14  | Left motor direction       |
-| Motor1 BIN1/BIN2    | 12 / 27  | Left motor direction       |
-| Motor1 PWMA/PWMB    | 26 / 25  | Left motor speed (PWM)     |
-| Motor2 AIN1/AIN2    | 33 / 32  | Right motor direction      |
-| Motor2 BIN1/BIN2    | 19 / 18  | Right motor direction      |
-| Motor2 PWMA/PWMB    | 23 / 22  | Right motor speed (PWM)    |
-| IR Sensors (L/C/R)  | 34 / 35 / 39 | Edge detection (Input only) |
-| Ultrasonic 1        | TRIG: 5 / ECHO: 36 | Front sensor     |
-| Ultrasonic 2        | TRIG: 4 / ECHO: 21 | Side sensor       |
-| Servo 1 / Servo 2   | 2 / 17   | PWM output for actuators   |
+🎯 This project demonstrates a full transition from rapid prototyping to a **professional-grade, embedded robotics platform**.
 
 ---
 
-## 🧩 PCB Design Overview
+## 🔧 Hardware Architecture
 
-- Designed using **KiCAD**
-- Contains LM2596-5.0 buck converter for **12V → 5V power supply**
-- Includes reverse polarity protection, indicator LEDs, decoupling caps
-- Labeled headers for **Motor drivers**, **Sensors**, and **Servos**
-- Optimized 2-layer layout with **ground plane** and **short traces**
+### 💡 Pinout (ESP32 GPIO Mapping)
 
----
-
-## ⚙️ Software Stack
-
-### 🛠 Development Environment
-- **ESP-IDF** (official framework)
-- FreeRTOS-based task scheduling
-- C code with modular structure for motors, sensors, and logic
-
-### 🧪 Features in Code
-- **`motor_init()`**: Initializes motor driver GPIOs
-- **`pwm_init()`**: Configures PWM for motors and servos
-- **`measure_distance()`**: Ultrasonic distance measurement
-- **`app_main()`**: Core logic loop for movement, obstacle detection, edge avoidance
+| Feature                | GPIO Pins       | Description                      |
+|------------------------|------------------|----------------------------------|
+| **Motor Driver 1**     | AIN1: 13, AIN2: 14<br>BIN1: 12, BIN2: 27<br>PWMA: 26, PWMB: 25 | Left motor control |
+| **Motor Driver 2**     | AIN1: 33, AIN2: 32<br>BIN1: 19, BIN2: 18<br>PWMA: 23, PWMB: 22 | Right motor control |
+| **STBY Pin**           | 15               | Motor enable (HIGH to activate) |
+| **IR Sensors**         | 34, 35, 39       | Left, Center, Right line sensors |
+| **Ultrasonic Sensors** | TRIG1: 5, ECHO1: 36<br>TRIG2: 4, ECHO2: 21 | Front + Side sensors |
+| **Servo Motors**       | PWM1: 2, PWM2: 17 | For future expansions or arms    |
 
 ---
 
-## 🚀 Getting Started
+## 📐 Custom PCB Design (KiCad)
 
-### ✅ Prerequisites
-- ESP-IDF setup on your machine
-- USB cable for ESP32 DevKit
-- Flashing tool: `idf.py`
+Upgraded from a breadboard mess to a **compact, production-ready PCB** design!
 
-### 🔧 Setup Steps
-1. Clone this repo:
-   ```bash
-   git clone https://github.com/AvishkaVishwa/Robot-Competetion-Sumo-Robot-method.git
+### 🖼️ PCB Gallery
+
+| Schematic | 2D Layout | Traces | 3D View |
+|----------|-----------|--------|---------|
+| ![](/assets/pcb_schematic.png) | ![](/assets/pcb_layout_top.png) | ![](/assets/pcb_layout_tracks.png) | ![](/assets/pcb_3d_view.png) |
+
+🧠 The board integrates:
+- LM2596 buck converter for 12V→5V power supply
+- Flyback protection, pull-ups, and boot-safe GPIO handling
+- Clean silkscreen for motors, sensors, servos, and ESP32 pins
+
+---
+
+## ⚙ Software Architecture
+
+Rebuilt from scratch using **ESP-IDF** with real-time multitasking.
+
+### Features:
+- `motor_control.c`: PWM-based speed/direction control for each wheel
+- `sensor_module.c`: Accurate ultrasonic and IR data reading
+- `servo_control.c`: Independent PWM channels for future mechanisms
+- `main.c`: Core decision loop – attack, avoid, rotate, reset
+
+### Task Flow:
+1. Wait 5s at start (sumo rule)
+2. Spiral scan for opponent
+3. Charge if detected
+4. Reverse/rotate on IR line detection
+5. Loop back to search
+
+---
+
+## 📦 Setup Instructions
+
+### Prerequisites
+- ESP-IDF environment installed
+- ESP32 DevKit (38-pin)
+- 12V LiFePO4 battery or regulated supply
+
+### Flash the Firmware:
+```bash
+git clone https://github.com/AvishkaVishwa/Robot-Competetion-Sumo-Robot-method.git
+cd robot-project
+idf.py build
+idf.py -p /dev/ttyUSB0 flash
+idf.py monitor
 ````
 
-2. Open the project in ESP-IDF.
-3. Build & flash:
+---
 
-   ```bash
-   idf.py build
-   idf.py -p /dev/ttyUSB0 flash
-   ```
+## 🧠 Learning Outcome
+
+This project reflects my transition from beginner-level prototyping to professional embedded systems engineering:
+
+### 💼 Skills Demonstrated:
+
+* Custom **KiCad PCB Design**
+* Hardware interfacing with **TB6612FNG**, **IR**, and **Ultrasonic sensors**
+* Real-time firmware in **C with ESP-IDF + FreeRTOS**
+* GPIO boot configuration for **ESP32 stability**
+* Full-stack integration from **electronics to software**
 
 ---
 
-## 🎮 Usage
+## 🔁 Legacy Reference
 
-1. Power the robot via 12V supply.
-2. Upon boot, robot waits 5 seconds (per Sumo rules).
-3. Begins spiral search pattern using ultrasonic sensors.
-4. Pushes opponent when detected.
-5. Backs off and realigns if a white line is detected via IR sensors.
+Want to see where it started?
+
+👉 [Original Arduino-based Sumo Robot](https://github.com/AvishkaVishwa/Robot-Competetion-Sumo-Robot-method)
 
 ---
 
-## 📸 Images
+## 📸 Real Robot Preview
 
-> ![PCB Front View](/assets/photo_2024-12-13_21-54-50.jpg)
-> ![PCB Top View](/assets/photo_2024-12-13_21-54-52.jpg)
+> ![](/assets/photo_2024-12-13_21-54-50.jpg)
+> ![](/assets/photo_2024-12-13_21-54-52.jpg)
 
 ---
 
-## 🤝 Contribution
+## 🤝 Contributions
 
-Feel free to fork this repository and submit pull requests for:
+Feel free to fork, adapt, or expand the logic for:
 
-* Performance optimizations
-* Additional sensor integration
-* AI-based strategy logic
+* PID motion control
+* AI-based opponent prediction
+* Bluetooth or remote-controlled override
 
 ---
 
 ## 📜 License
-
-This project is licensed under the MIT License. See the `LICENSE` file for details.
-
-```
-
----
-
-Would you like me to push this updated `README.md` to your GitHub repo or help create an **assets folder** with updated schematic/3D model renders for showcasing the new PCB?
-```
