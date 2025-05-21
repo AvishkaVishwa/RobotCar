@@ -3,6 +3,19 @@
 > ⚡ A complete redesign and performance upgrade of my original ESP32-based 2-wheel robot — now featuring 4-wheel differential drive, dual motor drivers, enhanced sensing, and a **custom-designed 2-layer PCB** for clean, robust competition performance.
 
 ---
+## 🏅 Awards & Achievements
+
+> 🥈 **2nd Place – University Robotics Competition**  
+> My previous 2-wheel ESP32-based robot won **2nd place** in a university competition.  
+> 🎯 **Challenge Objective:** Remove the maximum number of boxes from a designated area as fast as possible.  
+> 💡 The robot autonomously navigated, detected, and pushed objects while avoiding boundaries.  
+>
+> This new 4-wheel version builds on that success with:
+> - A custom PCB for higher stability and motor control
+> - Dual-mode (Autonomous + BLE Manual) operation
+> - Improved PD-based line tracking and obstacle avoidance
+> - Real-time scanning with servo-driven sensors
+
 
 ## 🔄 Evolution of the Project
 
@@ -67,19 +80,6 @@ This upgrade features a fully custom 2-layer PCB:
 
 ---
 
-## 🎮 Robot Behavior
-
-The robot autonomously competes in sumo matches using a **combination of ultrasonic detection, edge avoidance, and spiral search logic**.
-
-### Task Flow:
-1. Delay 5s after power-on (competition rule)
-2. Scan front and side for opponents
-3. Drive forward aggressively on detection
-4. Use IR sensors to avoid falling off the ring
-5. If no target found, initiate spiral search pattern
-
----
-
 ## ⚙ Software Architecture
 
 Built using **ESP-IDF + FreeRTOS**, the firmware is modular and real-time.
@@ -115,7 +115,7 @@ idf.py monitor
 > 🎥 Want to see it in action?
 > I’ve recorded videos of both the prototype and the upgraded robot performing edge detection, object pushing, and spiral search.
 
-📌 *Coming Soon to [YouTube](https://www.youtube.com/@WingsThroughEducation)*
+📌  [Video](https://github.com/user-attachments/assets/8567fc42-a18b-4fbb-b69a-60d1c5493e56)*
 
 ---
 
