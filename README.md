@@ -1,6 +1,5 @@
 
 
-````markdown
 # 🤖 Sumo Robot – ESP32 Upgrade Edition
 
 > ⚡ A major upgrade to my original Arduino-based Sumo Robot — now redesigned with an ESP32 DevKit, advanced dual motor drivers, ultrasonic + IR sensors, and a custom 2-layer PCB. Built for performance, precision, and reliability in competition environments.
@@ -86,7 +85,6 @@ Built with the **ESP-IDF framework** and **FreeRTOS**, the robot uses modular C 
 ## 🔧 Setup Instructions
 
 ### 🔄 Clone & Flash
-```bash
 git clone https://github.com/AvishkaVishwa/Robot-Competetion-Sumo-Robot-method.git
 cd robot-project
 idf.py build
