@@ -1,5 +1,4 @@
 
----
 
 ````markdown
 # 🤖 Sumo Robot – ESP32 Upgrade Edition
