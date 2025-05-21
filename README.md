@@ -1,8 +1,9 @@
+--- 
 
-````markdown
 # 🤖 Sumo Robot – **ESP32 Upgrade Edition** 🚀
 
-> ✅ A major redesign and performance upgrade of my original Arduino-based sumo robot project – now rebuilt with a powerful **ESP32 DevKit**, precision motor drivers, ultrasonic sensing, and a fully custom-designed PCB.
+> ✅ A major redesign and performance upgrade of my original Arduino-based sumo robot project – 
+- now rebuilt with a powerful **ESP32 DevKit**, precision motor drivers, ultrasonic sensing, and a fully custom-designed PCB.
 
 ---
 
@@ -80,7 +81,7 @@ Rebuilt from scratch using **ESP-IDF** with real-time multitasking.
 - 12V LiFePO4 battery or regulated supply
 
 ### Flash the Firmware:
-```bash
+
 git clone https://github.com/AvishkaVishwa/Robot-Competetion-Sumo-Robot-method.git
 cd robot-project
 idf.py build
