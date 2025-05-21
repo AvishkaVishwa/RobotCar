@@ -16,9 +16,9 @@
 
 ### 🔧 Before and After
 
-| Old Design | New Design |
-|------------|------------|
-| ![](/assets/esp32_old_protoboard.png) | ![](/assets/photo_2024-12-13_21-54-50.jpg) |
+| Old Design |
+|------------|
+ ![](/assets/photo_2024-12-13_21-54-50.jpg) 
 
 ---
 
