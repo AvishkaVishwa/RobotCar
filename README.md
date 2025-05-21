@@ -1,4 +1,3 @@
-Here is your **final regenerated `README.md`**, professionally rewritten to highlight this as an **ESP32-based upgrade** of your previous Arduino project, with a strong emphasis on your hardware, embedded, and PCB design skills:
 
 ---
 
