@@ -103,7 +103,7 @@ Built using **ESP-IDF + FreeRTOS**, the firmware is modular and real-time.
 
 ### Flash Instructions
 
-git clone https://github.com/AvishkaVishwa/Robot-Competetion-Sumo-Robot-method.git
+git clone https://github.com/AvishkaVishwa/RobotCar.git
 cd robot-project
 idf.py build
 idf.py -p /dev/ttyUSB0 flash
