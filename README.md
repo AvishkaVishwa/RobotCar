@@ -56,7 +56,8 @@ This upgrade features a fully custom 2-layer PCB:
 ![Schematic](/assets/1.JPG)
 
 #### 🧵 Routed View
-![Tracks](/assets/pcb_layout_tracks.png)
+![Tracks](/assets/2.JPG)
+![Tracks](/assets/3.JPG)
 
 #### 📐 2D Top View
 ![Top Layout](/assets/pcb_layout_top.png)
