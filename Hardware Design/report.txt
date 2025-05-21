@@ -1,0 +1,12 @@
+Plotted to 'D:\RobotCar\Hardware Design\Breakout_Board\esp32 master-F_Cu.gbr'.
+Plotted to 'D:\RobotCar\Hardware Design\Breakout_Board\esp32 master-B_Cu.gbr'.
+Plotted to 'D:\RobotCar\Hardware Design\Breakout_Board\esp32 master-F_Paste.gbr'.
+Plotted to 'D:\RobotCar\Hardware Design\Breakout_Board\esp32 master-B_Paste.gbr'.
+Plotted to 'D:\RobotCar\Hardware Design\Breakout_Board\esp32 master-F_Silkscreen.gbr'.
+Plotted to 'D:\RobotCar\Hardware Design\Breakout_Board\esp32 master-B_Silkscreen.gbr'.
+Plotted to 'D:\RobotCar\Hardware Design\Breakout_Board\esp32 master-F_Mask.gbr'.
+Plotted to 'D:\RobotCar\Hardware Design\Breakout_Board\esp32 master-B_Mask.gbr'.
+Plotted to 'D:\RobotCar\Hardware Design\Breakout_Board\esp32 master-Edge_Cuts.gbr'.
+Created Gerber job file 'D:\RobotCar\Hardware Design\Breakout_Board\esp32 master-job.gbrjob'.
+Info: Done.
+Info: Done.
