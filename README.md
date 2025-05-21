@@ -115,7 +115,7 @@ idf.py monitor
 > 🎥 Want to see it in action?
 > I’ve recorded videos of both the prototype and the upgraded robot performing edge detection, object pushing, and spiral search.
 
-📌  [Video](https://github.com/user-attachments/assets/8567fc42-a18b-4fbb-b69a-60d1c5493e56)*
+📌  <video src ="https://github.com/user-attachments/assets/8567fc42-a18b-4fbb-b69a-60d1c5493e56"></video>
 
 ---
 
