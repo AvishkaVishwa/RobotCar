@@ -63,7 +63,7 @@ This upgrade features a fully custom 2-layer PCB:
 ![Top Layout](/assets/4.JPG)
 
 #### 🧱 3D Render
-![3D View](/assets/pcb_3d_view.png)
+![3D View](/assets/esp32%20master.png)
 
 ---
 
