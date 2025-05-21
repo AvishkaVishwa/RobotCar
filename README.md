@@ -1,144 +1,140 @@
-
-
 # 🤖 Sumo Robot – ESP32 Upgrade Edition
 
-> ⚡ A major upgrade to my original Arduino-based Sumo Robot — now redesigned with an ESP32 DevKit, advanced dual motor drivers, ultrasonic + IR sensors, and a custom 2-layer PCB. Built for performance, precision, and reliability in competition environments.
+> ⚡ A complete redesign and performance upgrade of my original ESP32-based 2-wheel robot — now featuring 4-wheel differential drive, dual motor drivers, enhanced sensing, and a **custom-designed 2-layer PCB** for clean, robust competition performance.
 
 ---
 
-## 🚀 What’s New in the ESP32 Upgrade?
+## 🔄 Evolution of the Project
 
-| Previous Version (Arduino)             | 🚀 **This Version (ESP32)**                       |
-|----------------------------------------|--------------------------------------------------|
-| Arduino Uno                            | ESP32 DevKit (38-pin)                            |
-| L298N Motor Driver                     | Dual TB6612FNG Motor Drivers                     |
-| Breadboard wiring                      | Custom 2-layer PCB designed in KiCad             |
-| 2 IR sensors + 1 ultrasonic            | 3 IR sensors + 2 ultrasonic sensors              |
-| Arduino IDE                            | ESP-IDF + FreeRTOS (modular C code)              |
-| No PWM speed control                   | Hardware PWM-based motor and servo control       |
+| Original Prototype                    | 🚀 **Upgraded Version**                             |
+|--------------------------------------|----------------------------------------------------|
+| ESP32 on protoboard                  | ESP32 DevKit (38-pin) on custom 2-layer PCB        |
+| 2-wheel drive with single TB6612FNG  | 4-wheel drive using dual TB6612FNG drivers         |
+| Breadboard wiring                    | Professionally routed and labeled PCB in KiCad     |
+| 1 ultrasonic + 2 IR sensors          | 2 ultrasonic + 3 IR sensors                        |
+| Basic C firmware                     | Modular, RTOS-based firmware with **ESP-IDF**      |
+
+### 🔧 Before and After
+
+| Old Design | New Design |
+|------------|------------|
+| ![](/assets/esp32_old_protoboard.png) | ![](/assets/photo_2024-12-13_21-54-50.jpg) |
 
 ---
 
-## 🛠️ Hardware Overview
+## ⚙ Hardware Overview
 
-### 📍 ESP32 GPIO Pin Mapping
+### 📍 ESP32 GPIO Mapping
 
 | Feature             | GPIOs                            | Description                      |
 |---------------------|-----------------------------------|----------------------------------|
-| **Motor Driver 1**  | AIN1: 13, AIN2: 14                | Left Motor Direction             |
-|                     | BIN1: 12, BIN2: 27                |                                  |
-|                     | PWMA: 26, PWMB: 25                | Left Motor Speed (PWM)           |
-| **Motor Driver 2**  | AIN1: 33, AIN2: 32                | Right Motor Direction            |
-|                     | BIN1: 19, BIN2: 18                |                                  |
-|                     | PWMA: 23, PWMB: 22                | Right Motor Speed (PWM)          |
-| **Motor Enable**    | STBY: 15                          | Must be HIGH to enable motors    |
-| **IR Sensors**      | Left: 34, Center: 35, Right: 39   | Ring edge detection (input only) |
-| **Ultrasonic 1**    | TRIG: 5, ECHO: 36                 | Front detection                  |
-| **Ultrasonic 2**    | TRIG: 4, ECHO: 21                 | Side detection                   |
-| **Servo Motors**    | SERVO1: 2, SERVO2: 17             | Optional PWM-controlled outputs  |
+| **Motor Driver 1**  | AIN1: 13, AIN2: 14                | Left Front Motor Direction       |
+|                     | BIN1: 12, BIN2: 27                | Left Rear Motor Direction        |
+|                     | PWMA: 26, PWMB: 25                | Speed Control (PWM)              |
+| **Motor Driver 2**  | AIN1: 33, AIN2: 32                | Right Front Motor Direction      |
+|                     | BIN1: 19, BIN2: 18                | Right Rear Motor Direction       |
+|                     | PWMA: 23, PWMB: 22                | Speed Control (PWM)              |
+| **STBY Pin**        | 15                                | Keep HIGH to enable motors       |
+| **IR Sensors**      | 34, 35, 39                        | Left, Center, Right (input only) |
+| **Ultrasonic**      | TRIG1: 5, ECHO1: 36               | Front sensor                     |
+|                     | TRIG2: 4, ECHO2: 21               | Side sensor                      |
+| **Servos**          | SERVO1: 2, SERVO2: 17             | Optional (PWM outputs)           |
 
 ---
 
-## 🖼️ PCB Design – Custom & Optimized
+## 📐 PCB Design (KiCad)
 
-I designed a compact 2-layer PCB using **KiCad**, integrating:
-- Dual TB6612FNG motor drivers
-- LM2596 buck converter (12V → 5V)
-- Decoupling capacitors and reverse polarity protection
-- Labelled headers for sensors, servos, and motors
+This upgrade features a fully custom 2-layer PCB:
+- Dual motor driver breakout with decoupling capacitors
+- LM2596 buck converter (12V to 5V)
+- Pull-up/pull-down resistors for boot-safe ESP32 pins
+- Clear silk labels for servo, IR, ultrasonic, and power pins
 
 ### PCB Gallery
 
 #### 📘 Schematic View
 ![Schematic](/assets/pcb_schematic.png)
 
-#### 📐 2D Top View
-![Top Layout](/assets/pcb_layout_top.png)
-
 #### 🧵 Routed View
 ![Tracks](/assets/pcb_layout_tracks.png)
 
+#### 📐 2D Top View
+![Top Layout](/assets/pcb_layout_top.png)
+
 #### 🧱 3D Render
-![3D Render](/assets/pcb_3d_view.png)
+![3D View](/assets/pcb_3d_view.png)
 
 ---
 
-## ⚙️ Software Architecture
+## 🎮 Robot Behavior
 
-Built with the **ESP-IDF framework** and **FreeRTOS**, the robot uses modular C code for sensor management and control logic.
+The robot autonomously competes in sumo matches using a **combination of ultrasonic detection, edge avoidance, and spiral search logic**.
 
-### Main Features
-- `motor_control.c` – Direction and PWM speed control for motors
-- `sensor_module.c` – IR and ultrasonic sensor readings
-- `servo_control.c` – Servo angle control
-- `main.c` – Core behavior: search, push, evade
-
-### Logic Flow
-1. Wait 5 seconds after startup (Sumo rule)
-2. Use ultrasonic sensors to detect opponent
-3. Attack by charging forward
-4. Avoid white line using IR sensors
-5. Realign and retry
+### Task Flow:
+1. Delay 5s after power-on (competition rule)
+2. Scan front and side for opponents
+3. Drive forward aggressively on detection
+4. Use IR sensors to avoid falling off the ring
+5. If no target found, initiate spiral search pattern
 
 ---
 
-## 🔧 Setup Instructions
+## ⚙ Software Architecture
 
-### 🔄 Clone & Flash
+Built using **ESP-IDF + FreeRTOS**, the firmware is modular and real-time.
+
+| Module           | Function                                      |
+|------------------|-----------------------------------------------|
+| `motor_control.c`| Set motor direction and PWM speed             |
+| `sensor_module.c`| Read ultrasonic and IR sensor values          |
+| `servo_control.c`| Control servo angles (expandable feature)     |
+| `main.c`         | Main loop with attack, avoid, search routines |
+
+---
+
+## 🔧 Setup & Flashing
+
+### Prerequisites
+- ESP-IDF environment
+- ESP32 DevKit (38-pin)
+- 12V battery + USB cable
+
+### Flash Instructions
+
 git clone https://github.com/AvishkaVishwa/Robot-Competetion-Sumo-Robot-method.git
 cd robot-project
 idf.py build
 idf.py -p /dev/ttyUSB0 flash
 idf.py monitor
-````
-
-### Requirements
-
-* ESP32 DevKit (38-pin)
-* ESP-IDF toolchain installed
-* 12V battery (e.g., LiFePO4)
-* Micro-USB cable
 
 ---
 
-## 📸 Robot in Action
+## 📹 Videos & Demos
 
-> ![Photo 1](/assets/photo_2024-12-13_21-54-50.jpg)
-> ![Photo 2](/assets/photo_2024-12-13_21-54-52.jpg)
+> 🎥 Want to see it in action?
+> I’ve recorded videos of both the prototype and the upgraded robot performing edge detection, object pushing, and spiral search.
 
----
-
-## 📚 What I Learned
-
-This upgrade reflects my growth in:
-
-* 📐 **PCB Design**: From breadboard to 2-layer custom PCB
-* 🧠 **Embedded C Programming**: Using ESP-IDF, FreeRTOS, and modular architecture
-* 🔌 **Hardware Interfaces**: Motor drivers, ultrasonic, and IR sensors
-* ⚙️ **System Integration**: Reliable real-time robotic behavior
-
-> 🔧 I’ve moved from prototyping with Arduino to building robust systems using professional tools.
+📌 *Coming Soon to [YouTube](https://www.youtube.com/@WingsThroughEducation)*
 
 ---
 
-## 🕹️ Original Arduino Version
+## 📚 What This Project Shows
 
-Want to see where it started?
-Check out the [original Arduino-based version](https://github.com/AvishkaVishwa/Robot-Competetion-Sumo-Robot-method).
-
----
-
-## 🤝 Contributions & Ideas
-
-Suggestions and contributions are welcome! Possible future improvements:
-
-* PID-based motor speed control
-* AI strategy for adaptive behavior
-* Bluetooth remote override
-* OLED display for debug/status
+* Embedded firmware development with **ESP-IDF**
+* **Custom PCB design** (routing, power, protection, labeling)
+* Real-time autonomous behavior
+* Motor control using **PWM & H-bridges**
+* Sensor fusion: ultrasonic + IR edge detection
+* Full-stack development from electronics to software
 
 ---
 
+## 🤝 Contributions Welcome
 
-```
+Feel free to fork or suggest ideas such as:
 
+* PID control integration
+* Remote control override via WiFi
+* OLED display for system status
+
+---
