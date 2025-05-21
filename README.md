@@ -60,7 +60,7 @@ This upgrade features a fully custom 2-layer PCB:
 ![Tracks](/assets/3.JPG)
 
 #### 📐 2D Top View
-![Top Layout](/assets/pcb_layout_top.png)
+![Top Layout](/assets/4.JPG)
 
 #### 🧱 3D Render
 ![3D View](/assets/pcb_3d_view.png)
