@@ -87,10 +87,10 @@ Built using **ESP-IDF + FreeRTOS**, the firmware is modular and real-time.
 
 | Module           | Function                                      |
 |------------------|-----------------------------------------------|
-| `motor_control.c`| Set motor direction and PWM speed             |
-| `sensor_module.c`| Read ultrasonic and IR sensor values          |
-| `servo_control.c`| Control servo angles (expandable feature)     |
-| `main.c`         | Main loop with attack, avoid, search routines |
+|    `main.c`      | Set motor direction and PWM speed             |
+|                  | Read ultrasonic and IR sensor values          |
+|                  | Control servo angles (expandable feature)     |
+|                  | Main loop with attack, avoid, search routines |
 
 ---
 
