@@ -14,7 +14,7 @@
 | 1 ultrasonic + 2 IR sensors          | 2 ultrasonic + 3 IR sensors                        |
 | Basic C firmware                     | Modular, RTOS-based firmware with **ESP-IDF**      |
 
-### 🔧 Before and After
+### 🔧 The Current design 
 
 | Old Design |
 |------------|
@@ -53,7 +53,7 @@ This upgrade features a fully custom 2-layer PCB:
 ### PCB Gallery
 
 #### 📘 Schematic View
-![Schematic](/assets/pcb_schematic.png)
+![Schematic](/assets/1.JPG)
 
 #### 🧵 Routed View
 ![Tracks](/assets/pcb_layout_tracks.png)
