@@ -141,7 +141,7 @@ Feel free to fork or suggest ideas such as:
 
 ---
 ---
-<img src ="https://github.com/AvishkaVishwa/12V-DC-Motor-Speed-Controller-PCB-Design-using-KiCAD/blob/697574aaf954a9b90b7c7e1e8453339839cefebb/Images/pcb3.jpg">
+<img src ="assets\photo_2025-06-12_20-35-14.jpg">
 
 ## 🎉 Special Thanks to PCBWay
 
