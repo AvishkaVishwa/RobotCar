@@ -140,3 +140,23 @@ Feel free to fork or suggest ideas such as:
 * OLED display for system status
 
 ---
+---
+<img src ="https://github.com/AvishkaVishwa/12V-DC-Motor-Speed-Controller-PCB-Design-using-KiCAD/blob/697574aaf954a9b90b7c7e1e8453339839cefebb/Images/pcb3.jpg">
+
+## 🎉 Special Thanks to PCBWay
+
+<p align="center">
+  <a href="https://www.pcbway.com/" target="_blank">
+    <img src="https://github.com/AvishkaVishwa/12V-DC-Motor-Speed-Controller-PCB-Design-using-KiCAD/blob/0191b6e02eeb30e176867d2a93ebec854536829a/Images/pcbwaylogo.jpg" alt="PCBWay" width="200"/>
+  </a>
+</p>
+
+I would like to give a huge shoutout and sincere thanks to **[PCBWay](https://www.pcbway.com/)** for sponsoring the PCB fabrication of this project!
+
+The **build quality, silkscreen clarity, via precision, and copper finish** exceeded expectations. PCBWay’s service was fast, professional, and extremely helpful throughout the production process.
+
+This project wouldn’t have been possible without their generous support. If you’re looking to manufacture professional-grade PCBs at an affordable price, I highly recommend checking them out.
+
+🔗 [Visit PCBWay →](https://www.pcbway.com/)
+
+---
