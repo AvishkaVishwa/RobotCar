@@ -119,7 +119,7 @@ idf.py monitor
 📌  <video src ="https://github.com/user-attachments/assets/8567fc42-a18b-4fbb-b69a-60d1c5493e56"></video>
 
 
-📌 Here Is a test of the car with New PCB, I m still doing some modifications to this....😁 here i'm controlling the car with bluetooth using the mobile phone.
+📌 Here Is a test of the car with New PCB, I m still doing some modifications to this....😁 And i'm controlling the car with Bluetooth using the mobile phone.
     <video src ="https://github.com/user-attachments/assets/c9dc8e6a-7c8a-46cb-9330-15c2b81f15a4"></video>
 ---
 
